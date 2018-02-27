@@ -17,7 +17,7 @@ public class AddGoodCase01{
 	
 public static void main(String[] args) throws ClientProtocolException, IOException{
 		
-		//¹¹Ôì×Ô¶¨ÒåHeaderĞÅÏ¢
+		//æ„é€ è‡ªå®šä¹‰Headerä¿¡æ¯
 	    List<Header> headerList = new ArrayList<Header>();
 	    headerList.add(new BasicHeader(HttpHeaders.ACCEPT, "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"));
 	    headerList.add(new BasicHeader(HttpHeaders.USER_AGENT, "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"));
@@ -25,17 +25,17 @@ public static void main(String[] args) throws ClientProtocolException, IOExcepti
 	    headerList.add(new BasicHeader(HttpHeaders.CACHE_CONTROL, "max-age=0"));
 	    headerList.add(new BasicHeader(HttpHeaders.CONNECTION, "keep-alive"));
 	    headerList.add(new BasicHeader(HttpHeaders.ACCEPT_LANGUAGE, "zh-CN,zh;q=0.8"));	
-	   //¹¹Ôì×Ô¶¨ÒåµÄHttpClient¶ÔÏó
+	   //æ„é€ è‡ªå®šä¹‰çš„HttpClientå¯¹è±¡
 	    HttpClient httpClient = HttpClients.custom().setDefaultHeaders(headerList).build();
 	    	    
-	    //¹¹ÔìÇëÇó¶ÔÏó
-	    HttpUriRequest httpUriRequest = RequestBuilder.post().setUri("https://www.zhoupu123.com/saas/login?username=18010001001&password=aA111111&veriryCode=").build();
+	    //æ„é€ è¯·æ±‚å¯¹è±¡
+	    HttpUriRequest httpUriRequest = RequestBuilder.post().setUri("https://www.zhoupu123.com/saas/login?username=ä¸å‘Šè¯‰ä½ &password=ä¸å‘Šè¯‰ä½ &veriryCode=").build();
 	    
 	    Action action = new Action();
 	    action.getLoginResponse(httpClient, headerList, httpUriRequest);
 	    
 	    
-	    httpUriRequest = RequestBuilder.post().setUri("https://www.zhoupu123.com/saas/erp/doc/brand?id=&name=²âÊÔÉÌÆ·&state=0").build();
+	    httpUriRequest = RequestBuilder.post().setUri("https://www.zhoupu123.com/saas/erp/doc/brand?id=&name=æµ‹è¯•å•†å“&state=0").build();
 	    action.getAddGoods(httpClient, headerList, httpUriRequest);	    	    	    
 	}
 }
