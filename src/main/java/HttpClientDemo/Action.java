@@ -16,7 +16,6 @@ public class Action {
 
 	public  HttpResponse getLoginResponse(HttpClient httpClient,List<Header> headerList,HttpUriRequest httpUriRequest) throws ClientProtocolException, IOException {
 
-		//创建一个HttpContext对象
 		HttpClientContext httpClientContext = HttpClientContext.create();
 		httpClient.execute(httpUriRequest, httpClientContext);
 		System.out.println(httpClientContext.getCookieStore());   
@@ -27,7 +26,6 @@ public class Action {
 	}
 	
 	public  HttpResponse getAddGoods(HttpClient httpClient,List<Header> headerList,HttpUriRequest httpUriRequest) throws ClientProtocolException, IOException {			
-		//创建一个HttpContext对象
 		HttpClientContext httpClientContext = HttpClientContext.create();
 		HttpResponse httpResponse = httpClient.execute(httpUriRequest, httpClientContext);
 		System.out.println(httpClientContext.getCookieStore());
