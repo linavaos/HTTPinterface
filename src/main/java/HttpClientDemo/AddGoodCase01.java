@@ -2,16 +2,15 @@ package HttpClientDemo;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-
 import org.apache.http.Header;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
+import com.alibaba.fastjson.JSONObject;
 
 public class AddGoodCase01{
 	
@@ -28,14 +27,14 @@ public static void main(String[] args) throws ClientProtocolException, IOExcepti
 	   //构造自定义的HttpClient对象
 	    HttpClient httpClient = HttpClients.custom().setDefaultHeaders(headerList).build();
 	    	    
-	    //构造请求对象
-	    HttpUriRequest httpUriRequest = RequestBuilder.post().setUri("https://www.zhoupu123.com/saas/login?username=不告诉你&password=不告诉你&veriryCode=").build();
 	    
 	    Action action = new Action();
-	    action.getLoginResponse(httpClient, headerList, httpUriRequest);
+	    JsonData jsonData = new JsonData();
+	    LinkedHashMap<String, JSONObject> logindetail=jsonData.getJson("/src/main/java/HttpClientDemo/login.json");
+	    action.getLoginResponse(httpClient, headerList,"http://192.168.1.212:80/saas/login",logindetail);
 	    
 	    
-	    httpUriRequest = RequestBuilder.post().setUri("https://www.zhoupu123.com/saas/erp/doc/brand?id=&name=测试商品&state=0").build();
-	    action.getAddGoods(httpClient, headerList, httpUriRequest);	    	    	    
+		LinkedHashMap<String, JSONObject> goodsdetail=jsonData.getJson("/src/main/java/HttpClientDemo/goods.json");
+	    action.getAddGoods(httpClient, headerList, "http://192.168.1.212:80/saas/erp/doc/goods",goodsdetail);	    	    	    
 	}
 }
