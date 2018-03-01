@@ -34,7 +34,7 @@ public static void main(String[] args) throws ClientProtocolException, IOExcepti
 	    action.getLoginResponse(httpClient, headerList,"http://192.168.1.212:80/saas/login",logindetail);
 	    
 	    
-		LinkedHashMap<String, JSONObject> goodsdetail=jsonData.getJson("/src/main/java/HttpClientDemo/goods.json");
+		LinkedHashMap<String, JSONObject> goodsdetail=jsonData.getJson("/src/main/java/HttpClientDemo/saasgoods.json");
 	    action.getAddGoods(httpClient, headerList, "http://192.168.1.212:80/saas/erp/doc/goods",goodsdetail);	    	    	    
 	}
 }

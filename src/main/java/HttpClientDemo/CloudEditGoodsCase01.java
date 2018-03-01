@@ -5,17 +5,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-
 import org.apache.http.Header;
-import org.apache.http.HeaderElement;
-import org.apache.http.HeaderElementIterator;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
-import org.apache.http.message.BasicHeaderElementIterator;
-
 import com.alibaba.fastjson.JSONObject;
 
 public class CloudEditGoodsCase01 {
@@ -55,8 +50,14 @@ public class CloudEditGoodsCase01 {
 	    loginResponse=action.getLoginResponseToJumpTwoTimes(httpClient, headerList,realurl2);
 	  
 	    loginResponse=action.getLoginResponseJumpLast(httpClient, headerList,"http://wms-test.zhoupudata.com/oss/");
-	   
 	    
+	    LinkedHashMap<String, JSONObject> goodsdetail=jsonData.getJson("/src/main/java/HttpClientDemo/cloudgoods.json");
+	    HttpResponse addGoodsResponse=action.getAddGoodsResponse(httpClient, headerList, "http://wms-test.zhoupudata.com/oss/goods/save", goodsdetail);
+
+	    
+	    
+	    
+	       
 		
 	}
 }
