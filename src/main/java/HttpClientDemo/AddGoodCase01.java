@@ -28,7 +28,7 @@ public static void main(String[] args) throws ClientProtocolException, IOExcepti
 	    HttpClient httpClient = HttpClients.custom().setDefaultHeaders(headerList).build();
 	    	    
 	    
-	    Action action = new Action();
+	    SaasAction action = new SaasAction();
 	    JsonData jsonData = new JsonData();
 	    LinkedHashMap<String, JSONObject> logindetail=jsonData.getJson("/src/main/java/HttpClientDemo/saaslogin.json");
 	    action.getLoginResponse(httpClient, headerList,"http://192.168.1.212:80/saas/login",logindetail);

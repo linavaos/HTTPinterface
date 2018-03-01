@@ -21,7 +21,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.alibaba.fastjson.JSONObject;
 
-public class Action {
+public class SaasAction {
 
 	
 	public  HttpResponse getLoginResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONObject> logindetail) throws ClientProtocolException, IOException {

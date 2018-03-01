@@ -22,6 +22,7 @@ public class CloudEditGoodsCase01 {
 	
 	public static void main(String[] args) throws IOException{
 		
+		
 		//构造自定义Header信息
 	    List<Header> headerList = new ArrayList<Header>();
 	    headerList.add(new BasicHeader(HttpHeaders.ACCEPT, "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"));
@@ -34,22 +35,28 @@ public class CloudEditGoodsCase01 {
 	    HttpClient httpClient = HttpClients.custom().setDefaultHeaders(headerList).build();
 	    	    
 	   
-	    Action action = new Action();
+	    CloudAction action = new CloudAction();
 	    JsonData jsonData = new JsonData();
 	    LinkedHashMap<String, JSONObject> logindetail=jsonData.getJson("/src/main/java/HttpClientDemo/cloudlogin.json");
-	    HttpResponse loginResponse=action.getLoginResponseNo(httpClient, headerList,"http://192.168.1.204:8090/dologin?redirect_url=http%3A%2F%2Fwms-test.zhoupudata.com%2Foss",logindetail);
+	    HttpResponse loginResponse=action.getLoginResponseToJumpOne(httpClient, headerList,"http://192.168.1.204:8090/dologin?redirect_url=http%3A%2F%2Fwms-test.zhoupudata.com%2Foss",logindetail);
 	    InputStream inputStream=loginResponse.getEntity().getContent();
 	    StringBuffer out = new StringBuffer();
 	    byte b[] = new  byte[4096];
 	    int l;
 	    while((l=inputStream.read(b))!=-1){
 	    	out.append(new String(b, 0, l));
+	    	System.out.println("while1");
 	    }
 	    System.out.println(out);
 	    String realurl=out.substring(out.indexOf("http"),out.indexOf("\"}"));
 	    String realurl2 = realurl.replace("oss", "oss/");
-	    loginResponse=action.getLoginResponse(httpClient, headerList,realurl,logindetail);
-	    loginResponse=action.getLoginResponse(httpClient, headerList,realurl2,logindetail);
+	    inputStream.close();
+	    loginResponse=action.getLoginResponseToJumpTwoTimes(httpClient, headerList,realurl);
+	    loginResponse=action.getLoginResponseToJumpTwoTimes(httpClient, headerList,realurl2);
+	  
+	    loginResponse=action.getLoginResponseJumpLast(httpClient, headerList,"http://wms-test.zhoupudata.com/oss/");
+	   
+	    
 		
 	}
 }
