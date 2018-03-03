@@ -2,8 +2,8 @@
 	"goods1": {
 		"id": "#id",
 		"cid": "#cid",
-		"name": "wz010不管理日期规则",
-		"shortName": "wz010",
+		"name": "JK004不管理日期规则",
+		"shortName": "JK004",
 		"typeName": "双汇",
 		"typeId": "1",
 		"brandName": "",
@@ -39,8 +39,8 @@
 	"goods2": {
 		"id": "#id",
 		"cid": "#cid",
-		"name": "wz010生产日期保质期堆叠",
-		"shortName": "wz010",
+		"name": "JK004生产日期保质期堆叠",
+		"shortName": "JK004",
 		"typeName": "双汇",
 		"typeId": "1",
 		"brandName": "",

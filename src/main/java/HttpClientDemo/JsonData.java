@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
+
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
 
@@ -24,6 +26,17 @@ public class JsonData {
 
 	}
 	
+	public LinkedHashMap<String, JSONArray> getJsonArray(String files) throws IOException{
+
+		//先读取json文本内容\\src\\main\\java\\bo\\data.json
+	    String s=readJsonFile(files);
+		//解决json解析成map顺序错乱问题
+		JSONObject jsonObj = new JSONObject(true);  
+		LinkedHashMap  m= jsonObj.parseObject(s,LinkedHashMap.class,Feature.OrderedField); 
+		return m;
+	 
+
+	}
 
 
 

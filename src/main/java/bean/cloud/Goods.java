@@ -1,4 +1,4 @@
-package bean;
+package bean.cloud;
 
 import java.sql.Date;
 
@@ -7,6 +7,7 @@ public class Goods {
 	private	String	id; 
 	private	String	cid; 
 	private	String	name;
+ 
 	
 	
 	public String getId() {
@@ -26,9 +27,7 @@ public class Goods {
 	}
 	public void setName(String name) {
 		this.name = name;
-	} 
-	
-	
+	}
 
 }
 

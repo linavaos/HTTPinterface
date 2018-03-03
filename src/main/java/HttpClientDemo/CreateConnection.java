@@ -9,12 +9,11 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class CreateConnection {
 
-	private final String resource = "conf.xml"; 
 	private  Reader reader=null;
 	private SqlSessionFactory sessionFactory = null;
 	private SqlSession mysession = null;
 
-	public  CreateConnection(){	   
+	public  CreateConnection(String resource){	   
 		//加载mybatis的配置文件（它也加载关联的映射文件）
 		try{
 			reader = Resources.getResourceAsReader(resource);

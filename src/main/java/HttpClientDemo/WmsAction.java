@@ -9,30 +9,35 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 import org.apache.ibatis.session.SqlSession;
-
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import bean.wms.Goods;
 
-import bean.cloud.Goods;
-
-public class CloudAction {
+public class WmsAction {
+	
+	public static int count=0;
 
 	public  HttpResponse getLoginResponseToJumpTwoTimes(HttpClient httpClient,List<Header> headerList,String url) throws ClientProtocolException, IOException {
 
+		
 		HttpClientContext httpClientContext = HttpClientContext.create();	
 		String urlparamet=url+"";
 		System.out.println(urlparamet);
-		HttpUriRequest httpUriRequest = RequestBuilder.post().setUri(urlparamet).build();		
+		HttpUriRequest httpUriRequest = RequestBuilder.get().setUri(urlparamet).build();		
 		httpClient.execute(httpUriRequest, httpClientContext);
-		System.out.println(httpClientContext.getCookieStore());
 		System.out.println(httpUriRequest);
+		System.out.println("------------");
 		HttpResponse httpResponse = httpClient.execute(httpUriRequest);
+		System.out.println(httpClientContext.getCookieStore());
 		HttpEntity entity = httpResponse.getEntity();	
-		System.out.println(EntityUtils.toString(entity));				
+		System.out.println(EntityUtils.toString(entity));
 		return httpResponse;				
 	}
 
@@ -59,55 +64,57 @@ public class CloudAction {
 		HttpClientContext httpClientContext = HttpClientContext.create();	
 		String urlparamet=url+"";
 		System.out.println(urlparamet);
-		HttpUriRequest httpUriRequest = RequestBuilder.post().setUri(urlparamet).build();		
+		HttpUriRequest httpUriRequest = RequestBuilder.get().setUri(urlparamet).build();		
 		HttpResponse httpResponse=httpClient.execute(httpUriRequest, httpClientContext);
 		System.out.println(httpClientContext.getCookieStore());
 		System.out.println(httpUriRequest);
-		System.out.println("--------------------------------");
 		HttpEntity entity = httpResponse.getEntity();	
 		System.out.println(EntityUtils.toString(entity));				
 		return httpResponse;				
 	}
+	  HttpResponse getAddGoodsResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONArray> goodsdetail,String token) throws ClientProtocolException, IOException {
 
-
-	public  HttpResponse getAddGoodsResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONObject> goodsdetail) throws ClientProtocolException, IOException {
-
-		String salestatement = "bean.cloud.GoodsMapper.getGoods";
-		CreateConnection  createConnection = new CreateConnection("conf.xml");
+		String salestatement = "bean.wms.GoodsMapper.getGoods";
+		CreateConnection  createConnection = new CreateConnection("conf2.xml");
 		SqlSession sqlSession=createConnection.getSqlSession();
 		Set<String>  keys = goodsdetail.keySet();
 		HttpClientContext httpClientContext = HttpClientContext.create();
+		HttpPut  httpPut  = new HttpPut(url);
 		HttpResponse httpResponse = null;
 		for(String key:keys){
-			//的获得单个商品的属性key
-			Set<String>  goodskeys = goodsdetail.get(key).keySet();
-
-			String goodsname=goodsdetail.get(key).get("name").toString();
+			//因为一个list中的是一个商品所有直接取第一个商品的名字就可以了
+			String goodsname=goodsdetail.get(key).getJSONObject(0).getString("name");
 			System.out.println(goodsname);
-			Goods goodselement = sqlSession.selectOne(salestatement, goodsname);
-			System.out.println(goodselement);
-			if(goodselement!=null){
-				String goodsid=goodselement.getId();
-				String cid=goodselement.getCid();
-				String paramet = goodsdetail.get(key).toString().toString().replace(",", "&").replace("{", "?").replace("}", "").replace(" ", "").replace(":", "=").replace("|", "%7c").replace("\"", "").replace("#id", goodsid).replace("#cid",cid);
-				System.out.println(paramet);
-				String urlparamet = url+paramet;
-				System.out.println("Stringurl"+urlparamet);
-				HttpUriRequest httpUriRequest = RequestBuilder.post().setUri(urlparamet).build();
-				httpResponse = httpClient.execute(httpUriRequest, httpClientContext);
-				System.out.println(httpClientContext.getCookieStore());
-				HttpEntity entity = httpResponse.getEntity();	
-				System.out.println(EntityUtils.toString(entity));
-			}else{
-				System.out.println(goodsname+"没查到相应商品");
+			List<Goods> onegoodslist = sqlSession.selectList(salestatement,goodsname);
+			int index=0;
+			for(Goods goods:onegoodslist){
+				System.out.println(goods.getId());
+				System.out.println(goods.getSonId());
+				goodsdetail.get(key).getJSONObject(index).put("productCode",goods.getProductCode());
+				goodsdetail.get(key).getJSONObject(index).put("id",goods.getId());
+				goodsdetail.get(key).getJSONObject(index).put("code",goods.getCode());
+				goodsdetail.get(key).getJSONObject(index).put("sonId",goods.getId());
+				index++;				
 			}
+			String parameter=goodsdetail.get(key).toString().replace("csrfvalue",token.replace("_csrf=", ""));
+			System.out.println(token);
+			System.out.println(parameter);
+			System.out.println("--------------");
+	        StringEntity se = new StringEntity(parameter,"utf-8");
+	        se.setContentType("application/json");
+	        httpPut.setEntity(se);
+	        System.out.println(httpPut);
+	    	httpResponse=httpClient.execute(httpPut, httpClientContext);
+	    	HttpEntity entity = httpResponse.getEntity();	
+			System.out.println(EntityUtils.toString(entity));	
+		}	
+	
 
-		}
+
 
 		return httpResponse;
 
 	}
-
 
 }
 
