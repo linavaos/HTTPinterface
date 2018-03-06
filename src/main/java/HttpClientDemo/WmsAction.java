@@ -130,7 +130,6 @@ public class WmsAction {
 		SqlSession sqlSession=createConnection.getSqlSession();
 		String taskCode=acceptancestepdetail.get("taskCode").toString();
 		String Acceptancestepdetail=acceptancestepdetail.get("detail").toString();
-		//System.out.println(Acceptancestepdetail);
 		JSONArray jso=JSON.parseArray(Acceptancestepdetail);
 		System.out.println(jso);
 		//JSONObject jsonObj = new JSONObject(true);  
