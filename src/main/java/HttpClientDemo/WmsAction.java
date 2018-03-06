@@ -16,8 +16,13 @@ import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 import org.apache.ibatis.session.SqlSession;
+
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.parser.Feature;
+
+import bean.wms.Acceptancestep;
 import bean.wms.Goods;
 
 public class WmsAction {
@@ -33,7 +38,6 @@ public class WmsAction {
 		HttpUriRequest httpUriRequest = RequestBuilder.get().setUri(urlparamet).build();		
 		httpClient.execute(httpUriRequest, httpClientContext);
 		System.out.println(httpUriRequest);
-		System.out.println("------------");
 		HttpResponse httpResponse = httpClient.execute(httpUriRequest);
 		System.out.println(httpClientContext.getCookieStore());
 		HttpEntity entity = httpResponse.getEntity();	
@@ -72,7 +76,8 @@ public class WmsAction {
 		System.out.println(EntityUtils.toString(entity));				
 		return httpResponse;				
 	}
-	  HttpResponse getAddGoodsResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONArray> goodsdetail,String token) throws ClientProtocolException, IOException {
+	
+	public  HttpResponse getAddGoodsResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONArray> goodsdetail,String token) throws ClientProtocolException, IOException {
 
 		String salestatement = "bean.wms.GoodsMapper.getGoods";
 		CreateConnection  createConnection = new CreateConnection("conf2.xml");
@@ -113,6 +118,36 @@ public class WmsAction {
 
 
 		return httpResponse;
+
+	}
+	
+	
+	
+	public  HttpResponse getAcceptancestepResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String, Object> acceptancestepdetail,String token) throws ClientProtocolException, IOException {
+
+		String salestatement = "bean.wms.AcceptancestepMapper.getAcceptancestep";
+		CreateConnection  createConnection = new CreateConnection("conf2.xml");
+		SqlSession sqlSession=createConnection.getSqlSession();
+		String taskCode=acceptancestepdetail.get("taskCode").toString();
+		String Acceptancestepdetail=acceptancestepdetail.get("detail").toString();
+		//System.out.println(Acceptancestepdetail);
+		JSONArray jso=JSON.parseArray(Acceptancestepdetail);
+		System.out.println(jso);
+		//JSONObject jsonObj = new JSONObject(true);  
+		//LinkedHashMap  onestep= jsonObj.parseObject(Acceptancestepdetail,LinkedHashMap.class,Feature.OrderedField); 
+//		System.out.println(onestep);
+		List<Acceptancestep> Acceptancesteplist= sqlSession.selectList(salestatement, taskCode);
+		for(Acceptancestep acceptancestep:Acceptancesteplist){
+			
+			
+			System.out.println(acceptancestep.getGoodsId());
+		}
+	
+	
+
+
+
+		return null;
 
 	}
 

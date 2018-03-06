@@ -1,0 +1,18 @@
+{
+	"taskCode": "RKR001803060012",
+	"detail": [{
+		"goodsname": "JK010到期日期规则",
+		"productionDate": "",
+		"expireDate": "2018-03-24",
+		"goodsBatch": "",
+		"storageNumber": "1",
+		"goodsQuality": "1"
+	},{
+		"goodsname": "JK010生产日期到期日期规则",
+		"productionDate": "2018-03-05",
+		"expireDate": "",
+		"goodsBatch": "2018-03-24",
+		"storageNumber": "1",
+		"goodsQuality": "1"}]
+
+}

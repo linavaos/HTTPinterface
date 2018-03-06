@@ -19,5 +19,6 @@
 </environments>
 <mappers>
 <mapper resource="bean/wms/GoodsMapper.xml"/>
+<mapper resource="bean/wms/AcceptancestepMapper.xml"/>
 </mappers>
 </configuration>
