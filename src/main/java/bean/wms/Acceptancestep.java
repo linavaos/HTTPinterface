@@ -5,6 +5,7 @@ public class Acceptancestep {
 	private String taskid;
 	private String billType;
 	private String goodsId;
+	private String goodsname;
 	private String goodsCode;
 	private String acceDetailIdString;
 	private double srcstorageNumber;
@@ -16,7 +17,12 @@ public class Acceptancestep {
 	private String csrf;
 	private String perStackNumber;
 	private String taskCode;
-	
+	private String[] acceDetailId;
+	private String unitName;
+
+
+
+
 	public String getTaskid() {
 		return taskid;
 	}
@@ -44,7 +50,7 @@ public class Acceptancestep {
 	public String getAcceDetailIdString() {
 		return acceDetailIdString;
 	}
-	public void setAcceDetailId(String acceDetailIdString) {
+	public void setAcceDetailIdString(String acceDetailIdString) {
 		this.acceDetailIdString = acceDetailIdString;
 	}
 	public double getSrcstorageNumber() {
@@ -98,11 +104,31 @@ public class Acceptancestep {
 	public String getTaskCode() {
 		return taskCode;
 	}
-	
+
 	public void setTaskCode(String taskCode) {
 		this.taskCode = taskCode;
 	}
+
+	public String[] getAcceDetailId() {
+		return acceDetailId;
+	}
+	public void setAcceDetailId(String[] acceDetailId) {
+		this.acceDetailId = acceDetailIdString.split(",");
+	}
+	public String getGoodsname() {
+		return goodsname;
+	}
+	public void setGoodsname(String goodsname) {
+		this.goodsname = goodsname;
+	}
+	public String getUnitName() {
+		return unitName;
+	}
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
 	
-
-
+	
+	
+	
 }

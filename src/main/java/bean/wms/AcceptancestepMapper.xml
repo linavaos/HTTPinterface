@@ -3,17 +3,19 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace用来表本xml的唯一值，用文件路径表示 -->
 <mapper namespace="bean.wms.AcceptancestepMapper">
-	<select id="getAcceptancestep" parameterType="String"
+	<select id="getAcceptancestep" parameterType="bean.wms.Acceptancestep"
 		resultType="bean.wms.Acceptancestep">
 		SELECT
 		t.Code taskCode,
 		taskid,
 		'1' billType,
 		goodsId,
+		g.name goodsname,
+		g.unitName unitName,
 		goodsCode,
-		CONCAT(perStackNumber,'*',stackBoxLevel) perStackNumber,
-		acceNumber
-		srcstorageNumber,
+		CONCAT(perStackNumber,'*',stackBoxLevel)
+		perStackNumber,
+		sum(storageNumber) srcstorageNumber,
 		GROUP_CONCAT(d.id) acceDetailIdString
 		FROM
 		t_stockin_acceptance_detail d
@@ -22,6 +24,8 @@
 		LEFT JOIN t_doc_goods g ON
 		d.goodsid = g.id
 		GROUP BY taskid,goodsId
-		HAVING t.Code =#{taskCode}
+		HAVING t.Code =#{taskCode} and g.name=#{goodsname} and
+		g.unitName=#{unitName}
+
 	</select>
 </mapper>

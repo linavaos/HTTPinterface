@@ -130,17 +130,29 @@ public class WmsAction {
 		SqlSession sqlSession=createConnection.getSqlSession();
 		String taskCode=acceptancestepdetail.get("taskCode").toString();
 		String Acceptancestepdetail=acceptancestepdetail.get("detail").toString();
-		JSONArray jso=JSON.parseArray(Acceptancestepdetail);
-		System.out.println(jso);
-		//JSONObject jsonObj = new JSONObject(true);  
-		//LinkedHashMap  onestep= jsonObj.parseObject(Acceptancestepdetail,LinkedHashMap.class,Feature.OrderedField); 
-//		System.out.println(onestep);
-		List<Acceptancestep> Acceptancesteplist= sqlSession.selectList(salestatement, taskCode);
-		for(Acceptancestep acceptancestep:Acceptancesteplist){
+		JSONArray steplist=JSON.parseArray(Acceptancestepdetail);
+		List<Acceptancestep> acceptancesteplist = null;
+		for(int i=0;i<steplist.size();i++){
+			String step = steplist.get(i).toString();
+			JSONObject stepJSON=JSON.parseObject(step);
+			Acceptancestep acceptancestep = new Acceptancestep();
+			acceptancestep.setTaskCode(taskCode);
+			acceptancestep.setGoodsname(stepJSON.get("goodsname").toString());
+			acceptancestep.setUnitName(stepJSON.get("unitName").toString());
+//			System.out.println(stepJSON.get("unitName").toString());
+//			System.out.println(stepJSON.get("goodsname").toString());
+//			System.out.println(taskCode);
+		    acceptancesteplist = sqlSession.selectList(salestatement , acceptancestep);
+			System.out.println(acceptancesteplist.size());
 			
-			
-			System.out.println(acceptancestep.getGoodsId());
 		}
+		
+		for(Acceptancestep accstep:acceptancesteplist){
+			System.out.println("---------------");
+			System.out.println(accstep.getGoodsname());
+		}
+		
+		
 	
 	
 
