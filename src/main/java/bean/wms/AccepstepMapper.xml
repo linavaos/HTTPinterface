@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace用来表本xml的唯一值，用文件路径表示 -->
-<mapper namespace="bean.wms.AcceptancestepMapper">
-	<select id="getAcceptancestep" parameterType="bean.wms.Acceptancestep"
-		resultType="bean.wms.Acceptancestep">
+<mapper namespace="bean.wms.AccepstepMapper">
+	<select id="getAccepstep" parameterType="bean.wms.Accepstep"
+		resultType="bean.wms.Accepstep">
 		SELECT
 		t.Code taskCode,
 		taskid,

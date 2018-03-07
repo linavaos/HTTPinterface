@@ -54,7 +54,6 @@ public class WmsAcceptancestep {
 	    loginResponse=action.getLoginResponseJumpLast(httpClient, headerList,"http://wms-test.zhoupudata.com/wms/main");
 	    String editurl = "http://wms-test.zhoupudata.com/wms/doc/goods/batchSave?";
 	    String token=loginResponse.getFirstHeader("Set-Cookie").getValue().replace("XSRF-TOKEN", "_csrf").replace("; Path=/", "");
-	    headerList.add(new BasicHeader(HttpHeaders.ACCEPT, "application/json, text/javascript, */*; q=0.01"));
 	    LinkedHashMap<String, Object> acceptancebilldetail=jsonData.getObject("/src/main/java/HttpClientDemo/acceptancebill.json");
 	    action.getAcceptancestepResponse(httpClient, headerList, editurl+token, acceptancebilldetail,token);
 	    

@@ -1,13 +1,12 @@
 package bean.wms;
 
-public class Acceptancestep {
+public class Accepstep{
 
 	private String taskid;
 	private String billType;
 	private String goodsId;
 	private String goodsname;
 	private String goodsCode;
-	private String acceDetailIdString;
 	private double srcstorageNumber;
 	private double storageNumber;
 	private String expireDate;
@@ -18,6 +17,7 @@ public class Acceptancestep {
 	private String perStackNumber;
 	private String taskCode;
 	private String[] acceDetailId;
+	private String acceDetailIdString;
 	private String unitName;
 
 
@@ -46,12 +46,6 @@ public class Acceptancestep {
 	}
 	public void setGoodsCode(String goodsCode) {
 		this.goodsCode = goodsCode;
-	}
-	public String getAcceDetailIdString() {
-		return acceDetailIdString;
-	}
-	public void setAcceDetailIdString(String acceDetailIdString) {
-		this.acceDetailIdString = acceDetailIdString;
 	}
 	public double getSrcstorageNumber() {
 		return srcstorageNumber;
@@ -107,12 +101,18 @@ public class Acceptancestep {
 
 	public void setTaskCode(String taskCode) {
 		this.taskCode = taskCode;
+	}		
+	public String getAcceDetailIdString() {
+		return acceDetailIdString;
+	}
+	public void setAcceDetailIdString(String acceDetailIdString) {
+		this.acceDetailIdString = acceDetailIdString;
 	}
 
 	public String[] getAcceDetailId() {
 		return acceDetailId;
 	}
-	public void setAcceDetailId(String[] acceDetailId) {
+	public void setAcceDetailId() {
 		this.acceDetailId = acceDetailIdString.split(",");
 	}
 	public String getGoodsname() {
@@ -127,8 +127,6 @@ public class Acceptancestep {
 	public void setUnitName(String unitName) {
 		this.unitName = unitName;
 	}
-	
-	
-	
-	
+
+
 }
