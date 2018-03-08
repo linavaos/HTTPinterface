@@ -136,6 +136,9 @@ public class WmsAction {
 		JSONArray steplist=JSON.parseArray(Acceptancestepdetail);
 		Accepstep accepstep = null;
 		List<Accepstep> accepsteplist = new ArrayList<Accepstep>();
+		HttpResponse httpResponse = null;
+		HttpClientContext httpClientContext = HttpClientContext.create();	
+
 		for(int i=0;i<steplist.size();i++){
 			String step = steplist.get(i).toString();
 			JSONObject stepJSON=JSON.parseObject(step);
@@ -162,19 +165,29 @@ public class WmsAction {
 		}
 
 		for(Accepstep accstep1:accepsteplist){
-			System.out.println(accstep1.getTaskid());
-			System.out.println(accstep1.getBillType());
-			System.out.println(accstep1.getGoodsId());
-			System.out.println(accstep1.getGoodsCode());
-			System.out.println(accstep1.getProductionDate());
-			System.out.println(accstep1.getExpireDate());
-			System.out.println(accstep1.getGoodsBatch());
-			System.out.println(accstep1.getPerStackNumber());
-			System.out.println(accstep1.getGoodsQuality());
-			System.out.println(accstep1.getStorageNumber());
-			System.out.println(accstep1.getCsrf());
-			System.out.println(accstep1.getSrcstorageNumber());
-			System.out.println(accstep1.getAcceDetailId()[0]);
+
+			String taskid=accstep1.getTaskid();
+			String billType=accstep1.getBillType();
+			String goodsId=accstep1.getGoodsId();
+			String goodsCode=accstep1.getGoodsCode();
+			String productionDate=accstep1.getProductionDate();
+			String expireDate=accstep1.getExpireDate();
+			String goodsBatch=accstep1.getGoodsBatch();
+			String perStackNumber=accstep1.getPerStackNumber();
+			String goodsQuality=accstep1.getGoodsQuality();
+			double storageNumber=accstep1.getStorageNumber();
+			String csrf=accstep1.getCsrf().substring(accstep1.getCsrf().indexOf("=")+1);
+			double srcstorageNumber=accstep1.getSrcstorageNumber();
+			String acceDetailId[]=accstep1.getAcceDetailId();
+			String parament = "taskId="+taskid+"&billType="+billType+"&goodsId="+goodsId+"&goodsCode="+goodsCode+"&productionDate="+productionDate+"&expireDate="+expireDate+"&goodsBatch="+goodsBatch+"&perStackNumber="+perStackNumber+"&goodsQuality="+goodsQuality+"&storageNumber="+storageNumber+"&_csrf="+csrf+"&srcstorageNumber="+srcstorageNumber;
+			for(int i=0;i<acceDetailId.length;i++){
+				parament=parament+"&acceDetailIds%5B%5D="+acceDetailId[i];
+			}			
+			String urlparamet=url+parament;
+			HttpUriRequest httpUriRequest = RequestBuilder.post().setUri(urlparamet).build();
+			httpResponse=httpClient.execute(httpUriRequest, httpClientContext);
+			HttpEntity entity = httpResponse.getEntity();	
+			System.out.println(EntityUtils.toString(entity));
 		}
 
 

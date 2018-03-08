@@ -1,13 +1,48 @@
 {
-	"taskCode": "RKR001803060012",
+	"taskCode": "RKR001803080021",
 	"detail": [{
-		"goodsname": "JK006生产日期到期日期规则",
-		"unitName":"箱",
-		"productionDate": "2018-02-24",
-		"expireDate": "2018-03-24",
-		"goodsBatch": "",
-		"storageNumber": "1",
-		"goodsQuality": "1"
-	}]
-
+			"goodsname": "JK011到期日期规则",
+			"unitName": "箱",
+			"productionDate": "",
+			"expireDate": "2018-03-24",
+			"goodsBatch": "",
+			"storageNumber": "2",
+			"goodsQuality": "1"
+		}, {
+			"goodsname": "JK011到期日期规则",
+			"unitName": "箱",
+			"productionDate": "",
+			"expireDate": "2018-03-25",
+			"goodsBatch": "",
+			"storageNumber": "2",
+			"goodsQuality": "1"
+		},
+		{
+			"goodsname": "JK011到期日期规则",
+			"unitName": "箱",
+			"productionDate": "",
+			"expireDate": "2018-03-26",
+			"goodsBatch": "",
+			"storageNumber": "2",
+			"goodsQuality": "1"
+		},
+		{
+			"goodsname": "JK011到期日期规则",
+			"unitName": "箱",
+			"productionDate": "",
+			"expireDate": "2018-03-27",
+			"goodsBatch": "",
+			"storageNumber": "2",
+			"goodsQuality": "1"
+		},
+		{
+			"goodsname": "JK011到期日期规则",
+			"unitName": "瓶",
+			"productionDate": "",
+			"expireDate": "2018-03-24",
+			"goodsBatch": "",
+			"storageNumber": "2",
+			"goodsQuality": "1"
+		}
+	]
 }
