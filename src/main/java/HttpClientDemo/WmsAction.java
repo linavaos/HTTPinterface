@@ -95,6 +95,7 @@ public class WmsAction {
 			System.out.println(goodsname);
 			List<Goods> onegoodslist = sqlSession.selectList(salestatement,goodsname);
 			int index=0;
+			System.out.println("商品数目"+onegoodslist.size());
 			for(Goods goods:onegoodslist){
 				System.out.println(goods.getId());
 				System.out.println(goods.getSonId());
@@ -102,6 +103,13 @@ public class WmsAction {
 				goodsdetail.get(key).getJSONObject(index).put("id",goods.getId());
 				goodsdetail.get(key).getJSONObject(index).put("code",goods.getCode());
 				goodsdetail.get(key).getJSONObject(index).put("sonId",goods.getId());
+				goodsdetail.get(key).getJSONObject(index).put("supplierName",goods.getSupplierName());
+				goodsdetail.get(key).getJSONObject(index).put("supplierId",goods.getSupplierId());
+				goodsdetail.get(key).getJSONObject(index).put("dealerName",goods.getDealerName());
+				goodsdetail.get(key).getJSONObject(index).put("dealerId",goods.getDealerId());
+				System.out.println("华丽分割-----------------"+goods.getDealerId());
+
+			
 				index++;				
 			}
 			String parameter=goodsdetail.get(key).toString().replace("csrfvalue",token.replace("_csrf=", ""));

@@ -33,7 +33,7 @@ public class CloudEditGoodsCase01 {
 	    CloudAction action = new CloudAction();
 	    JsonData jsonData = new JsonData();
 	    LinkedHashMap<String, JSONObject> logindetail=jsonData.getJson("/src/main/java/HttpClientDemo/cloudlogin.json");
-	    HttpResponse loginResponse=action.getLoginResponseToJumpOne(httpClient, headerList,"http://192.168.1.204:8090/dologin?redirect_url=http%3A%2F%2Fwms-test.zhoupudata.com%2Foss",logindetail);
+	    HttpResponse loginResponse=action.getLoginResponseToJumpOne(httpClient, headerList,"http://192.168.1.204:8090/dologin?redirect_url=http%3A%2F%2F192.168.1.212%3A9201%2Foss",logindetail);
 	    InputStream inputStream=loginResponse.getEntity().getContent();
 	    StringBuffer out = new StringBuffer();
 	    byte b[] = new  byte[4096];
@@ -49,10 +49,10 @@ public class CloudEditGoodsCase01 {
 	    loginResponse=action.getLoginResponseToJumpTwoTimes(httpClient, headerList,realurl);
 	    loginResponse=action.getLoginResponseToJumpTwoTimes(httpClient, headerList,realurl2);
 	  
-	    loginResponse=action.getLoginResponseJumpLast(httpClient, headerList,"http://wms-test.zhoupudata.com/oss/");
+	    loginResponse=action.getLoginResponseJumpLast(httpClient, headerList,"http://192.168.1.212:9201/oss/");
 	    
 	    LinkedHashMap<String, JSONObject> goodsdetail=jsonData.getJson("/src/main/java/HttpClientDemo/cloudgoods.json");
-	    HttpResponse addGoodsResponse=action.getAddGoodsResponse(httpClient, headerList, "http://wms-test.zhoupudata.com/oss/goods/save", goodsdetail);
+	    HttpResponse addGoodsResponse=action.getAddGoodsResponse(httpClient, headerList, "http://192.168.1.212:9201/oss/goods/save", goodsdetail);
 
 	    
 	    

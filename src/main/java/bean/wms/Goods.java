@@ -1,7 +1,5 @@
 package bean.wms;
 
-import java.sql.Date;
-
 public class Goods {
 
 	private	String	id; 
@@ -11,6 +9,10 @@ public class Goods {
 	private	String code;
 	private	String sonId;
 	private	String bigorsmall;
+	private	String dealerId;
+	private	String dealerName;
+	private	String supplierId;
+	private	String supplierName;
 	
 	
 	public String getId() {
@@ -54,10 +56,31 @@ public class Goods {
 	}
 	public void setBigorsmall(String bigorsmall) {
 		this.bigorsmall = bigorsmall;
+	}
+	public String getDealerId() {
+		return dealerId;
+	}
+	public void setDealerId(String dealerId) {
+		this.dealerId = dealerId;
+	}
+	public String getDealerName() {
+		return dealerName;
+	}
+	public void setDealerName(String dealerName) {
+		this.dealerName = dealerName;
+	}
+	public String getSupplierId() {
+		return supplierId;
+	}
+	public void setSupplierId(String supplierId) {
+		this.supplierId = supplierId;
+	}
+	public String getSupplierName() {
+		return supplierName;
+	}
+	public void setSupplierName(String supplierName) {
+		this.supplierName = supplierName;
 	} 
-	
-	
-
 }
 
 

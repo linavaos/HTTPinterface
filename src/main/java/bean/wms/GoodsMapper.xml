@@ -3,8 +3,17 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace用来表本xml的唯一值，用文件路径表示 -->
 <mapper namespace="bean.wms.GoodsMapper">
-	<select id="getGoods" parameterType="String"
-		resultType="bean.wms.Goods">
-		select id,name,productCode,code,sonId,SUBSTRING_INDEX(sourceCode,"-",-1) bigorsmall from t_doc_goods where name=#{name}
-	</select>	
+	<select id="getGoods" parameterType="String" resultType="bean.wms.Goods">
+		select
+		id,
+		NAME,
+		productCode,
+		CODE,
+		sonId,
+		SUBSTRING_INDEX(sourceCode, "-" ,- 1) bigorsmall,
+		dealerId,
+		dealerName,
+		supplierId,
+		supplierName from t_doc_goods where name=#{name}
+	</select>
 </mapper>
