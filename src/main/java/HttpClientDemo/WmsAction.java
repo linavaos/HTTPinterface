@@ -83,8 +83,7 @@ public class WmsAction {
 	public  HttpResponse getAddGoodsResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONArray> goodsdetail,String token) throws ClientProtocolException, IOException {
 
 		String salestatement = "bean.wms.GoodsMapper.getGoods";
-		CreateConnection  createConnection = new CreateConnection("conf2.xml");
-		SqlSession sqlSession=createConnection.getSqlSession();
+		SqlSession sqlSession=SqlSessionUntil.SqlSession("conf2.xml");
 		Set<String>  keys = goodsdetail.keySet();
 		HttpClientContext httpClientContext = HttpClientContext.create();
 		HttpPut  httpPut  = new HttpPut(url);
@@ -137,8 +136,7 @@ public class WmsAction {
 	public  HttpResponse getAcceptancestepResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String, Object> acceptancestepdetail,String token) throws ClientProtocolException, IOException {
 
 		String salestatement = "bean.wms.AccepstepMapper.getAccepstep";
-		CreateConnection  createConnection = new CreateConnection("conf2.xml");
-		SqlSession sqlSession=createConnection.getSqlSession();
+		SqlSession sqlSession=SqlSessionUntil.SqlSession("conf2.xml");
 		String taskCode=acceptancestepdetail.get("taskCode").toString();
 		String Acceptancestepdetail=acceptancestepdetail.get("detail").toString();
 		JSONArray steplist=JSON.parseArray(Acceptancestepdetail);

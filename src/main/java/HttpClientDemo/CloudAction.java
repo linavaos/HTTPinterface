@@ -73,8 +73,7 @@ public class CloudAction {
 	public  HttpResponse getAddGoodsResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONObject> goodsdetail) throws ClientProtocolException, IOException {
 
 		String salestatement = "bean.cloud.GoodsMapper.getGoods";
-		CreateConnection  createConnection = new CreateConnection("conf.xml");
-		SqlSession sqlSession=createConnection.getSqlSession();
+		SqlSession sqlSession=SqlSessionUntil.SqlSession("conf.xml");
 		Set<String>  keys = goodsdetail.keySet();
 		HttpClientContext httpClientContext = HttpClientContext.create();
 		HttpResponse httpResponse = null;
