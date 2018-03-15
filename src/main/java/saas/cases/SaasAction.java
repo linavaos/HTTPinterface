@@ -75,21 +75,13 @@ public class SaasAction {
 	}
 	
 	
-	public  HttpResponse getSavepurchaseHttpResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONObject> goodsdetail) throws ClientProtocolException, IOException {
+	public  HttpResponse getSavepurchaseHttpResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONObject> purchasebill) throws ClientProtocolException, IOException {
 
-		Set<String>  keys = goodsdetail.keySet();
+		Set<String>  keys = purchasebill.keySet();
 		HttpClientContext httpClientContext = HttpClientContext.create();
 		HttpResponse httpResponse = null;
-		for(String key:keys){
-//			String paramet = goodsdetail.get(key).toString().toString().replace(",", "&").replace("{", "?").replace("}", "").replace(" ", "").replace(":", "=").replace("|", "%7c").replace("\"", "");
-//			String urlparamet = url+paramet;
-//			System.out.println("Stringurl"+urlparamet);
-//			HttpUriRequest httpUriRequest = RequestBuilder.post().setUri(urlparamet).build();
-//			httpResponse = httpClient.execute(httpUriRequest, httpClientContext);
-//			System.out.println(httpClientContext.getCookieStore());
-//			HttpEntity entity = httpResponse.getEntity();	
-//			System.out.println(EntityUtils.toString(entity));
-		}
+	
+		
 
 		return httpResponse;
 
