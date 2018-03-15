@@ -1,10 +1,11 @@
-package HttpClientDemo;
+package wms.cases;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
+
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -19,14 +20,14 @@ import org.apache.http.util.EntityUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.lf5.util.AdapterLogRecord;
 
+import wms.bean.Accepstep;
+import wms.bean.Goods;
+import HttpClientDemo.SqlSessionUntil;
+
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
-
-import bean.wms.Accepstep;
-
-import bean.wms.Goods;
 
 public class WmsAction {
 
@@ -82,7 +83,7 @@ public class WmsAction {
 
 	public  HttpResponse getAddGoodsResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONArray> goodsdetail,String token) throws ClientProtocolException, IOException {
 
-		String salestatement = "bean.wms.GoodsMapper.getGoods";
+		String salestatement = "wms.bean.GoodsMapper.getGoods";
 		SqlSession sqlSession=SqlSessionUntil.SqlSession("conf2.xml");
 		Set<String>  keys = goodsdetail.keySet();
 		HttpClientContext httpClientContext = HttpClientContext.create();
@@ -135,7 +136,7 @@ public class WmsAction {
 
 	public  HttpResponse getAcceptancestepResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String, Object> acceptancestepdetail,String token) throws ClientProtocolException, IOException {
 
-		String salestatement = "bean.wms.AccepstepMapper.getAccepstep";
+		String salestatement = "wms.bean.AccepstepMapper.getAccepstep";
 		SqlSession sqlSession=SqlSessionUntil.SqlSession("conf2.xml");
 		String taskCode=acceptancestepdetail.get("taskCode").toString();
 		String Acceptancestepdetail=acceptancestepdetail.get("detail").toString();

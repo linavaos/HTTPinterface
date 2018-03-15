@@ -1,25 +1,25 @@
-package HttpClientDemo;
+package cloud.cases;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+
 import org.apache.http.Header;
-import org.apache.http.HeaderIterator;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 
-import com.alibaba.fastjson.JSONArray;
+import HttpClientDemo.JsonData;
+
 import com.alibaba.fastjson.JSONObject;
 
-public class WmsEditGoodsCase01 {
+public class EditGoodsCase {
 	
-	public static void main(String[] args) throws IOException{
+	public static void editgoods(String casename01,String casename02) throws IOException{
 		
 		
 		//构造自定义Header信息
@@ -31,36 +31,32 @@ public class WmsEditGoodsCase01 {
 	    headerList.add(new BasicHeader(HttpHeaders.CONNECTION, "keep-alive"));
 	    headerList.add(new BasicHeader(HttpHeaders.ACCEPT_LANGUAGE, "zh-CN,zh;q=0.8"));	
 	   //构造自定义的HttpClient对象
-	    CloseableHttpClient httpClient = HttpClients.custom().setDefaultHeaders(headerList).build();
+	    HttpClient httpClient = HttpClients.custom().setDefaultHeaders(headerList).build();
 	    	    
 	   
-	    WmsAction action = new WmsAction();
+	    CloudAction action = new CloudAction();
 	    JsonData jsonData = new JsonData();
-	    LinkedHashMap<String, JSONObject> logindetail=jsonData.getJson("/src/main/java/HttpClientDemo/wmslogin.json");
-	    HttpResponse loginResponse=action.getLoginResponseToJumpOne(httpClient, headerList,"http://192.168.1.204:8090/dologin?redirect_url=http%3A%2F%2Fwms-test.zhoupudata.com%2Fwms",logindetail);
+	    LinkedHashMap<String, JSONObject> logindetail=jsonData.getJson(casename01);
+	    HttpResponse loginResponse=action.getLoginResponseToJumpOne(httpClient, headerList,"http://192.168.1.204:8090/dologin?redirect_url=http%3A%2F%2F192.168.1.212%3A9201%2Foss",logindetail);
 	    InputStream inputStream=loginResponse.getEntity().getContent();
 	    StringBuffer out = new StringBuffer();
 	    byte b[] = new  byte[4096];
 	    int l;
 	    while((l=inputStream.read(b))!=-1){
 	    	out.append(new String(b, 0, l));
+	    	System.out.println("while1");
 	    }
 	    System.out.println(out);
 	    String realurl=out.substring(out.indexOf("http"),out.indexOf("\"}"));
-	    String realurl2 = realurl.replace("wms?", "wms/?");
-	    //关闭这个跳转即可
-	    //loginResponse=action.getLoginResponseToJumpTwoTimes(httpClient, headerList,realurl);
+	    String realurl2 = realurl.replace("oss", "oss/");
+	    inputStream.close();
+	    loginResponse=action.getLoginResponseToJumpTwoTimes(httpClient, headerList,realurl);
 	    loginResponse=action.getLoginResponseToJumpTwoTimes(httpClient, headerList,realurl2);
-	    loginResponse=action.getLoginResponseJumpLast(httpClient, headerList,"http://wms-test.zhoupudata.com/wms/");
-	    loginResponse=action.getLoginResponseJumpLast(httpClient, headerList,"http://wms-test.zhoupudata.com/wms/main");
-	    String editurl = "http://wms-test.zhoupudata.com/wms/doc/goods/batchSave?";
-	    String token=loginResponse.getFirstHeader("Set-Cookie").getValue().replace("XSRF-TOKEN", "_csrf").replace("; Path=/", "");
-	    headerList.add(new BasicHeader(HttpHeaders.ACCEPT, "application/json, text/javascript, */*; q=0.01"));
-	    LinkedHashMap<String, JSONArray> goodsdetail=jsonData.getJsonArray("/src/main/java/HttpClientDemo/wmsgoods.json");
-	    action.getAddGoodsResponse(httpClient, headerList, editurl+token, goodsdetail,token);
-	    
-	    
 	  
+	    loginResponse=action.getLoginResponseJumpLast(httpClient, headerList,"http://192.168.1.212:9201/oss/");
+	    
+	    LinkedHashMap<String, JSONObject> goodsdetail=jsonData.getJson(casename02);
+	    HttpResponse addGoodsResponse=action.getAddGoodsResponse(httpClient, headerList, "http://192.168.1.212:9201/oss/goods/save", goodsdetail);
 
 	    
 	    

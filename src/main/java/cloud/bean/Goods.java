@@ -1,4 +1,4 @@
-package bean.cloud;
+package cloud.bean;
 
 import java.sql.Date;
 

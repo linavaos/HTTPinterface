@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace用来表本xml的唯一值，用文件路径表示 -->
-<mapper namespace="bean.cloud.GoodsMapper">
+<mapper namespace="cloud.bean.GoodsMapper">
 	<select id="getGoods" parameterType="String"
-		resultType="bean.cloud.Goods">
+		resultType="cloud.bean.Goods">
 		select id,cid,name from t_doc_goods_oss where name=#{name}
 	</select>	
 </mapper>

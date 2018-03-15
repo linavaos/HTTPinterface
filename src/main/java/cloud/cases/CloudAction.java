@@ -1,9 +1,10 @@
-package HttpClientDemo;
+package cloud.cases;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
+
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,9 +16,10 @@ import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.util.EntityUtils;
 import org.apache.ibatis.session.SqlSession;
 
-import com.alibaba.fastjson.JSONObject;
+import HttpClientDemo.SqlSessionUntil;
+import cloud.bean.Goods;
 
-import bean.cloud.Goods;
+import com.alibaba.fastjson.JSONObject;
 
 public class CloudAction {
 
@@ -72,7 +74,7 @@ public class CloudAction {
 
 	public  HttpResponse getAddGoodsResponse(HttpClient httpClient,List<Header> headerList,String url,LinkedHashMap<String,JSONObject> goodsdetail) throws ClientProtocolException, IOException {
 
-		String salestatement = "bean.cloud.GoodsMapper.getGoods";
+		String salestatement = "cloud.bean.GoodsMapper.getGoods";
 		SqlSession sqlSession=SqlSessionUntil.SqlSession("conf.xml");
 		Set<String>  keys = goodsdetail.keySet();
 		HttpClientContext httpClientContext = HttpClientContext.create();

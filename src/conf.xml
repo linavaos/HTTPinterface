@@ -18,6 +18,6 @@
 </environment>
 </environments>
 <mappers>
-<mapper resource="bean/cloud/GoodsMapper.xml"/>
+<mapper resource="cloud/bean/GoodsMapper.xml"/>
 </mappers>
 </configuration>

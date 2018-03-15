@@ -1,20 +1,24 @@
-package HttpClientDemo;
+package saas.cases;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+
 import org.apache.http.Header;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
+
+import HttpClientDemo.JsonData;
+
 import com.alibaba.fastjson.JSONObject;
 
-public class AddGoodCase01{
+public class AddGoodCase{
 	
-public static void main(String[] args) throws ClientProtocolException, IOException{
+public static void addgoods(String casename01,String casename02) throws IOException{
 		
 		//构造自定义Header信息
 	    List<Header> headerList = new ArrayList<Header>();
@@ -30,11 +34,11 @@ public static void main(String[] args) throws ClientProtocolException, IOExcepti
 	    
 	    SaasAction action = new SaasAction();
 	    JsonData jsonData = new JsonData();
-	    LinkedHashMap<String, JSONObject> logindetail=jsonData.getJson("/src/main/java/HttpClientDemo/saaslogin.json");
+	    LinkedHashMap<String, JSONObject> logindetail=jsonData.getJson(casename01);
 	    action.getLoginResponse(httpClient, headerList,"http://192.168.1.212:80/saas/login",logindetail);
 	    
 	    
-		LinkedHashMap<String, JSONObject> goodsdetail=jsonData.getJson("/src/main/java/HttpClientDemo/saasgoods.json");
+		LinkedHashMap<String, JSONObject> goodsdetail=jsonData.getJson(casename02);
 	    action.getAddGoods(httpClient, headerList, "http://192.168.1.212:80/saas/erp/doc/goods",goodsdetail);	    	    	    
 	}
 }

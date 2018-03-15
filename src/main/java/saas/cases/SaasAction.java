@@ -1,4 +1,4 @@
-package HttpClientDemo;
+package saas.cases;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;

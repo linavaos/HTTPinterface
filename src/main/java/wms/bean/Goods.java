@@ -1,4 +1,4 @@
-package bean.wms;
+package wms.bean;
 
 public class Goods {
 
