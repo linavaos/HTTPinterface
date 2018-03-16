@@ -11,7 +11,9 @@ public class PurchaseBill {
 	private String	approveFlag;
 	private String	orderBillId;
 	private String	orderBillNo;
+	//不知道干啥的，传2即可
 	private String	deliveryType;
+	//不知道干啥的，传空即可
 	private String	workTimeBackup;
 	private String	mpState;
 	private String	supplierId;
@@ -21,8 +23,11 @@ public class PurchaseBill {
 	private String	workTime;
 	private String	remark;
 	private String	totalAmount;
+	//本次收款金额
 	private String	nowPaidAmount;
+	//合计销售单价总额
 	private String	totalSaleamount;
+	//合计税额
 	private String	totalRateamount;
 	private String	nowDiscountAmount;
 	private String	afterDiscountAmount;

@@ -100,3 +100,26 @@ details[1].quantity
 details[1].subAmount
 details[1].discount
 details[1].seq
+
+
+
+
+{
+	"orderBillNo": "",
+	"supplierName": "养云公司",
+	"workOperId": "宋世峰",
+	"deptid": "连云港欣丰多商贸有限公司",
+	"warehouseId": "舟谱云仓",
+	"workTime": "2018-03-16",
+	"remark": "测试1",
+	"nowPaidAmount": "0",
+	"nowDiscountAmount": "0",
+	"accounts": [{
+		"id": "现金",
+		"amount:": "0"
+	}],
+	"details": [{
+		"goodsname": "测试不良品",
+		"": ""
+	}]
+}

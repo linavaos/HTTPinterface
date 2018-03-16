@@ -2,14 +2,14 @@ package saas.cases;
 
 public class Account {
 	
-	private Double amount;
+
+	private double amount;
 	private String id;
 	private String type;
-	
-	public Double getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	public void setAmount(Double amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 	public String getId() {
@@ -24,5 +24,8 @@ public class Account {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	
+
 
 }
