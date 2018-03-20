@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
@@ -62,6 +63,16 @@ public class JsonData {
 	 
 
 	}
+	
+	
+   public static JSONArray ObjectTOJsonArray(Object object){
+	   
+	   String objectString = object.toString();
+	   JSONArray jsonArrry=JSON.parseArray(objectString);
+	   
+	   return jsonArrry;
+	      
+   }
 
 
 	public static String readJsonFile(String  jsonFilePath) throws IOException{

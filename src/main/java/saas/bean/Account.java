@@ -1,17 +1,12 @@
-package saas.cases;
+package saas.bean;
 
 public class Account {
-	
 
-	private double amount;
+
 	private String id;
 	private String type;
-	public double getAmount() {
-		return amount;
-	}
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
+	private String name;
+	
 	public String getId() {
 		return id;
 	}
@@ -24,8 +19,13 @@ public class Account {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
 
 
 }

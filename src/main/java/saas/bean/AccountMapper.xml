@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace用来表本xml的唯一值，用文件路径表示 -->
+<mapper namespace="saas.bean.AccountMapper">
+	<select id="getAccount" parameterType="String" resultType="saas.bean.Account">
+	 select name,id,type from t_doc_account where cid=1014 and name=#{name}
+	</select>
+</mapper>

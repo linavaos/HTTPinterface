@@ -18,7 +18,7 @@ import com.alibaba.fastjson.JSONObject;
 
 public class AddPurchaseBill{
 	
-public static void addgoods(String casename01,String casename02) throws IOException{
+public static void addpurchaseBill(String casename01,String casename02) throws IOException{
 		
 		//构造自定义Header信息
 	    List<Header> headerList = new ArrayList<Header>();
@@ -38,7 +38,7 @@ public static void addgoods(String casename01,String casename02) throws IOExcept
 	    action.getLoginResponse(httpClient, headerList,"http://192.168.1.212:80/saas/login",logindetail);
 	    
 	    
-		LinkedHashMap<String, JSONObject> goodsdetail=jsonData.getJson(casename02);
-	    //action.getSavepurchaseHttpResponse(httpClient, headerList, url, purchasebill)   	    	    
+		LinkedHashMap<String, Object> purchasebill=jsonData.getObject(casename02);
+	    action.getSavepurchaseHttpResponse(httpClient, headerList, "http://192.168.1.212/saas/erp/bill/purchase/load/add/0?type=0", purchasebill);   	    	    
 	}
 }

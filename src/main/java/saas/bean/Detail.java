@@ -1,4 +1,4 @@
-package saas.cases;
+package saas.bean;
 
 public class Detail {
 

@@ -1,0 +1,24 @@
+{
+	"orderBillNo": "",
+	"supplierName": "双汇南京直供",
+	"workOperId": "沈家军",
+	"deptid": "建湖双汇",
+	"warehouseId": "舟谱云仓",
+	"workTime": "2018-03-16",
+	"remark": "测试1",
+	"nowDiscountAmount": "1",
+	"type": "0",
+	"accounts": [{
+		"id": "现金",
+		"amount":"2"
+	}],
+	"details": [{
+		"goodsname": "JK003生产日期保质期堆叠乘法",
+		"productionDateState": "",
+		"currUnitName": "箱",
+		"origPrice": "",
+		"realPrice": "2",
+		"quantity": "4",
+		"selectBaseUnit": "false"
+	}]
+}

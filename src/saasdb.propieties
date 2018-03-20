@@ -1,0 +1,4 @@
+driver=com.mysql.jdbc.Driver
+url= jdbc:mysql://192.168.1.206:3306/saas_erp_965?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=false
+username=root
+password=qazWSX098

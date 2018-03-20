@@ -108,7 +108,7 @@ details[1].seq
 	"orderBillNo": "",
 	"supplierName": "养云公司",
 	"workOperId": "宋世峰",
-	"deptid": "连云港欣丰多商贸有限公司",
+	"deptid": "5509",
 	"warehouseId": "舟谱云仓",
 	"workTime": "2018-03-16",
 	"remark": "测试1",
@@ -120,6 +120,11 @@ details[1].seq
 	}],
 	"details": [{
 		"goodsname": "测试不良品",
-		"": ""
+		"productionDateState": "",
+		"currUnitName":"箱",
+		"origPrice":"",
+		"realPrice":"",
+		"quantity":"4",
+		"selectBaseUnit":"false"
 	}]
 }

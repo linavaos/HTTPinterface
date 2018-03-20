@@ -1,4 +1,4 @@
-package saas.cases;
+package saas.bean;
 
 import java.util.List;
 

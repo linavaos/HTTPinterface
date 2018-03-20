@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace用来表本xml的唯一值，用文件路径表示 -->
+<mapper namespace="saas.bean.DeptMapper">
+	<select id="getDept" parameterType="String" resultType="saas.bean.Dept">
+	 select id,name from t_doc_dept where name=#{name}
+	</select>
+</mapper>
