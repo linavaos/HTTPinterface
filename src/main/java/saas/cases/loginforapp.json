@@ -1,0 +1,13 @@
+{
+	"version": 22,
+	"platType": "android",
+	"action": "login",
+	"params": {
+		"password": "352db3c79ec03bd3ef7d019e4a0dbb8f",
+		"safetoken": "MDg0YWZjZDEzYjQ1NGRjODhlNTRkMzAwNzA1MjI4MDA=",
+		"timer": "1524475798705",
+		"username": "18010001001"
+	},
+	"exclude": ["password", "safetoken", "username"],
+	"sign": "0410a30191b0d9af8ebd23f1eeac26dc"
+}

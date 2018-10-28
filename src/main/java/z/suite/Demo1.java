@@ -2,20 +2,24 @@ package z.suite;
 
 import java.io.IOException;
 
-import cloud.cases.EditGoodsCase;
-import saas.cases.AddGoodCase;
-import saas.cases.AddPurchaseBill;
-import wms.cases.WmsEditGoodsCase;
+import org.apache.http.client.HttpClient;
+import saas.bean.PurchaseBill;
+import saas.cases.ActionGoodCaseDoc;
+import saas.cases.ActionPurchaseBill;
+import saas.cases.LoginCase;
+import saas.cases.NoSurchGoodsException;
+
 
 public class Demo1 {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, IllegalArgumentException, IllegalAccessException, NoSurchGoodsException {
 		
-		AddGoodCase.addgoods("/src/main/java/saas/cases/saaslogin.json","/src/main/java/saas/cases/addgoodcase01.json");
-		EditGoodsCase.editgoods("/src/main/java/cloud/cases/cloudlogin.json", "/src/main/java/cloud/cases/cloudgoodscase01.json");
-		WmsEditGoodsCase.wmsEditgoods("/src/main/java/wms/cases/wmslogin.json", "/src/main/java/wms/cases/wmsgoods.json");
-		AddPurchaseBill.addpurchaseBill("/src/main/java/saas/cases/saaslogin.json", "/src/main/java/saas/cases/addpurchasebillcase01.json");
-
+		HttpClient httpClient=LoginCase.loginCase("/src/main/java/saas/cases/saaslogin.json");
+		//ActionGoodCaseDoc.addgoods(httpClient, "/src/main/java/saas/cases/addgoodcase01.json");
+	    PurchaseBill purchaseBill2=ActionPurchaseBill.addpurchaseBill("/src/main/java/saas/cases/addpurchasebillcase01.json", httpClient);
+	    ActionPurchaseBill.aprovepurchaseBill(httpClient, purchaseBill2);
+		System.out.println(purchaseBill2);
+	
 
 	}
 

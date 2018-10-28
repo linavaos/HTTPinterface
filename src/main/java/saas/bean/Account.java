@@ -6,7 +6,9 @@ public class Account {
 	private String id;
 	private String type;
 	private String name;
-	
+	private double amount;
+	private int seq;
+
 	public String getId() {
 		return id;
 	}
@@ -25,7 +27,30 @@ public class Account {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", type=" + type + ", name=" + name + ", amount=" + amount + "]";
+	}
 
+
+	public String tourlString(){
+
+		String urlparam = "&accounts["+seq+"].amount="+amount+"&accounts["+seq+"].id="+id+"&accounts["+seq+"].type="+type;
+		return urlparam;
+
+	}
 
 
 }

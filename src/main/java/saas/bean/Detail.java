@@ -1,5 +1,7 @@
 package saas.bean;
 
+import java.lang.reflect.Field;
+
 public class Detail {
 
 	private	String	articleNumber;
@@ -27,16 +29,11 @@ public class Detail {
 	private	String	pkgBarcode;
 	private	Double	pkgPurchase;
 	private	String	unitFactorName;
-	private	String	stockArray;
-	private	Double	stockQuantity;
-	private	Double	reserveQuantity;
-	private	Double	availableQuantity;
-	//realprice
-	private	String	editField;
 	private	Double	quantity;
-	private	Double subAmount;
-	private	Double	discount;
-	private	String	seq;
+	private	Double  subAmount;
+	private	int	seq;
+
+
 	public String getArticleNumber() {
 		return articleNumber;
 	}
@@ -181,36 +178,7 @@ public class Detail {
 	public void setUnitFactorName(String unitFactorName) {
 		this.unitFactorName = unitFactorName;
 	}
-	public String getStockArray() {
-		return stockArray;
-	}
-	public void setStockArray(String stockArray) {
-		this.stockArray = stockArray;
-	}
-	public Double getStockQuantity() {
-		return stockQuantity;
-	}
-	public void setStockQuantity(Double stockQuantity) {
-		this.stockQuantity = stockQuantity;
-	}
-	public Double getReserveQuantity() {
-		return reserveQuantity;
-	}
-	public void setReserveQuantity(Double reserveQuantity) {
-		this.reserveQuantity = reserveQuantity;
-	}
-	public Double getAvailableQuantity() {
-		return availableQuantity;
-	}
-	public void setAvailableQuantity(Double availableQuantity) {
-		this.availableQuantity = availableQuantity;
-	}
-	public String getEditField() {
-		return editField;
-	}
-	public void setEditField(String editField) {
-		this.editField = editField;
-	}
+
 	public Double getQuantity() {
 		return quantity;
 	}
@@ -223,17 +191,30 @@ public class Detail {
 	public void setSubAmount(Double subAmount) {
 		this.subAmount = subAmount;
 	}
-	public Double getDiscount() {
-		return discount;
-	}
-	public void setDiscount(Double discount) {
-		this.discount = discount;
-	}
-	public String getSeq() {
+	public int getSeq() {
 		return seq;
 	}
-	public void setSeq(String seq) {
+	public void setSeq(int seq) {
 		this.seq = seq;
 	}
+
+
+	public String tourlString() throws IllegalArgumentException, IllegalAccessException{
+
+		String urlparam = null;
+		//获得当前对象的Class
+		Class c = this.getClass();
+		//获得所有Filed
+		Field fileds[] = c.getDeclaredFields();
+
+		for(Field filed:fileds){
+			filed.setAccessible(true);
+			urlparam+="&details["+seq+"]."+filed.getName()+"="+filed.get(this);
+		}
+		
+		return urlparam.replace("null", "");
+
+	}
+
 
 }

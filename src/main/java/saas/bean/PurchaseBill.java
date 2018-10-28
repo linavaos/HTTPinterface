@@ -22,20 +22,30 @@ public class PurchaseBill {
 	private String	warehouseId;
 	private String	workTime;
 	private String	remark;
-	private String	totalAmount;
+	private double	totalAmount;
 	//本次收款金额
-	private String	nowPaidAmount;
+	private double	nowPaidAmount;
 	//合计销售单价总额
-	private String	totalSaleamount;
+	private double	totalSaleamount;
 	//合计税额
-	private String	totalRateamount;
-	private String	nowDiscountAmount;
-	private String	afterDiscountAmount;
+	private double	totalRateamount;
+	private double	nowDiscountAmount;
+	private double	afterDiscountAmount;
 	private List<Account>	accountlist;
-	private String	nowLeftAmount;
+	private double	nowLeftAmount;
 	private List<Detail> detaillist;
 	private String	selectBaseUnit;
-	
+	private String deptId;
+
+
+
+	public String getDeptId() {
+		return deptId;
+	}
+	public void setDeptId(String deptId) {
+		this.deptId = deptId;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -132,40 +142,40 @@ public class PurchaseBill {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public String getTotalAmount() {
+	public double getTotalAmount() {
 		return totalAmount;
 	}
-	public void setTotalAmount(String totalAmount) {
+	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-	public String getNowPaidAmount() {
+	public double getNowPaidAmount() {
 		return nowPaidAmount;
 	}
-	public void setNowPaidAmount(String nowPaidAmount) {
+	public void setNowPaidAmount(double nowPaidAmount) {
 		this.nowPaidAmount = nowPaidAmount;
 	}
-	public String getTotalSaleamount() {
+	public double getTotalSaleamount() {
 		return totalSaleamount;
 	}
-	public void setTotalSaleamount(String totalSaleamount) {
+	public void setTotalSaleamount(double totalSaleamount) {
 		this.totalSaleamount = totalSaleamount;
 	}
-	public String getTotalRateamount() {
+	public double getTotalRateamount() {
 		return totalRateamount;
 	}
-	public void setTotalRateamount(String totalRateamount) {
+	public void setTotalRateamount(double totalRateamount) {
 		this.totalRateamount = totalRateamount;
 	}
-	public String getNowDiscountAmount() {
+	public double getNowDiscountAmount() {
 		return nowDiscountAmount;
 	}
-	public void setNowDiscountAmount(String nowDiscountAmount) {
+	public void setNowDiscountAmount(double nowDiscountAmount) {
 		this.nowDiscountAmount = nowDiscountAmount;
 	}
-	public String getAfterDiscountAmount() {
+	public double getAfterDiscountAmount() {
 		return afterDiscountAmount;
 	}
-	public void setAfterDiscountAmount(String afterDiscountAmount) {
+	public void setAfterDiscountAmount(double afterDiscountAmount) {
 		this.afterDiscountAmount = afterDiscountAmount;
 	}
 	public List<Account> getAccountlist() {
@@ -174,10 +184,10 @@ public class PurchaseBill {
 	public void setAccountlist(List<Account> accountlist) {
 		this.accountlist = accountlist;
 	}
-	public String getNowLeftAmount() {
+	public double getNowLeftAmount() {
 		return nowLeftAmount;
 	}
-	public void setNowLeftAmount(String nowLeftAmount) {
+	public void setNowLeftAmount(double nowLeftAmount) {
 		this.nowLeftAmount = nowLeftAmount;
 	}
 	public List<Detail> getDetaillist() {
@@ -192,5 +202,45 @@ public class PurchaseBill {
 	public void setSelectBaseUnit(String selectBaseUnit) {
 		this.selectBaseUnit = selectBaseUnit;
 	}
-	
+
+
+	@Override
+	public String toString() {
+		return "PurchaseBill [id=" + id + ", billNo=" + billNo + ", type=" + type + ", redFlag=" + redFlag
+				+ ", approveFlag=" + approveFlag + ", orderBillId=" + orderBillId + ", orderBillNo=" + orderBillNo
+				+ ", deliveryType=" + deliveryType + ", workTimeBackup=" + workTimeBackup + ", mpState=" + mpState
+				+ ", supplierId=" + supplierId + ", supplierName=" + supplierName + ", workOperId=" + workOperId
+				+ ", warehouseId=" + warehouseId + ", workTime=" + workTime + ", remark=" + remark + ", totalAmount="
+				+ totalAmount + ", nowPaidAmount=" + nowPaidAmount + ", totalSaleamount=" + totalSaleamount
+				+ ", totalRateamount=" + totalRateamount + ", nowDiscountAmount=" + nowDiscountAmount
+				+ ", afterDiscountAmount=" + afterDiscountAmount + ", accountlist=" + accountlist + ", nowLeftAmount="
+				+ nowLeftAmount + ", detaillist=" + detaillist + ", selectBaseUnit=" + selectBaseUnit + "]";
+	}
+
+
+
+	public String tourlString() throws IllegalArgumentException, IllegalAccessException {
+		String urlparam="?id=" + id + "&billNo=" + billNo + "&type=" + type + "&redFlag=" + redFlag
+				+ "&approveFlag=" + approveFlag + "&orderBillId=" + orderBillId + "&orderBillNo=" + orderBillNo
+				+ "&deliveryType=" + deliveryType + "&workTimeBackup=" + workTimeBackup + "&mpState=" + mpState
+				+ "&supplierId=" + supplierId + "&supplierName=" + supplierName + "&workOperId=" + workOperId
+				+ "&warehouseId=" + warehouseId + "&workTime=" + workTime + "&remark=" + remark + "&totalAmount="
+				+ totalAmount + "&nowPaidAmount=" + nowPaidAmount + "&totalSaleamount=" + totalSaleamount
+				+ "&totalRateamount=" + totalRateamount + "&nowDiscountAmount=" + nowDiscountAmount
+				+ "&afterDiscountAmount=" + afterDiscountAmount + "&nowLeftAmount="
+				+ nowLeftAmount + "&selectBaseUnit=" + selectBaseUnit;
+
+		for(Account account:accountlist){
+			urlparam+=account.tourlString();
+		}
+		
+		for(Detail detail:detaillist){
+			urlparam+=detail.tourlString();
+			
+		}
+
+		return urlparam.replace("null", "");
+	}
+
+
 }

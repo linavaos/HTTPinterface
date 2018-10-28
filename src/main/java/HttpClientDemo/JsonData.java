@@ -65,6 +65,16 @@ public class JsonData {
 	}
 	
 	
+	//直接返回json字符串
+	public String getJsonString(String files) throws IOException{
+
+		//先读取json文本内容\\src\\main\\java\\bo\\data.json
+	    String s=readJsonFile(files);
+	    return s;
+	}
+	
+	
+	
    public static JSONArray ObjectTOJsonArray(Object object){
 	   
 	   String objectString = object.toString();

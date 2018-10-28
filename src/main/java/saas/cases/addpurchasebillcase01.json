@@ -1,21 +1,32 @@
 {
 	"orderBillNo": "",
-	"supplierName": "双汇南京直供",
-	"workOperId": "沈家军",
-	"deptid": "建湖双汇",
-	"warehouseId": "舟谱云仓",
-	"workTime": "2018-03-16",
+	"supplierName": "茶茶",
+	"workOperName": "李志军",
+	"deptid": "滁州文生商贸有限公司",
+	"warehouseId": "主仓库",
+	"workTime": "2018-10-19",
 	"remark": "测试1",
 	"nowDiscountAmount": "1",
 	"type": "0",
 	"accounts": [{
 		"id": "现金",
 		"amount":"2"
+	},{
+		"id": "银行",
+		"amount":"2"
 	}],
 	"details": [{
-		"goodsname": "JK003生产日期保质期堆叠乘法",
+		"goodsname": "1箱=5公斤",
 		"productionDateState": "",
-		"currUnitName": "箱",
+		"currUnitName": "瓶",
+		"origPrice": "",
+		"realPrice": "2",
+		"quantity": "4",
+		"selectBaseUnit": "false"
+	},{
+		"goodsname": "1箱=5公斤",
+		"productionDateState": "",
+		"currUnitName": "件",
 		"origPrice": "",
 		"realPrice": "2",
 		"quantity": "4",

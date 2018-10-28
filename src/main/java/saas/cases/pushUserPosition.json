@@ -1,0 +1,1 @@
+{"version":22,"platType":"android","action":"pushUserPosition","params":{"accounttype":"2","cid":"3","lat":"31.984199","lon":"118.771553","safetoken":"ZjMyNGNkYjIxMGFiNDlkYzk0NDZjYmZkY2E2MjRiZGU=","timer":"1524480905766","uid":"1060"},"exclude":["accounttype","lat","lon","safetoken"],"sign":"acfbfcb24b532bf85924852644c0fbff"}
