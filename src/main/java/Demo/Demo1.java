@@ -10,6 +10,7 @@ public class Demo1 {
 
 		User a = new User();
 		a.setAge(20);
+		//123444
 		a.setName("zhangsan");
 		SqlSession sqlSession = SqlSessionUntil.SqlSession("testconf.xml");
 
